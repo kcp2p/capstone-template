@@ -1,0 +1,33 @@
+% Front matter: lists used in the finished report
+
+% List of Tables
+\cleardoublepage
+\makeatletter
+\chapter*{LIST OF TABLES}
+\addcontentsline{toc}{chapter}{LIST OF TABLES}
+% Add extra vertical space so the header row sits below the chapter title
+\vspace{1.5\baselineskip}
+\noindent{\bfseries Table}\hfill{\bfseries Page}\par\vspace{.5\baselineskip}
+\@starttoc{lot}
+\makeatother
+\cleardoublepage
+
+% List of Figures
+\makeatletter
+\chapter*{LIST OF FIGURES}
+\addcontentsline{toc}{chapter}{LIST OF FIGURES}
+% Add extra vertical space so the header row sits below the chapter title
+\vspace{1.5\baselineskip}
+\noindent{\bfseries Figure}\hfill{\bfseries Page}\par\vspace{.5\baselineskip}
+\@starttoc{lof}
+\makeatother
+
+% List of Abbreviations and Symbols
+\cleardoublepage
+\makeatletter
+\chapter*{LIST OF ABBREVIATIONS AND SYMBOLS}
+\addcontentsline{toc}{chapter}{LIST OF ABBREVIATIONS AND SYMBOLS}
+
+\vspace{1.5\baselineskip}
+\noindent Replace or remove this section depending on whether your report uses abbreviations or symbols.
+\makeatother

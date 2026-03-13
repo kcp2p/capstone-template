@@ -1,0 +1,83 @@
+%! TeX program = lualatex
+% Main LaTeX Document - thesis.tex
+\documentclass[12pt,a4paper]{report}
+
+% Thesis metadata
+\newcommand{\thesistitle}{THESIS TITLE IN ENGLISH}
+\newcommand{\studentname}{NAME SURNAME}
+\newcommand{\degree}{BACHELOR OF ENGINEERING IN ROBOTICS AND AI ENGINEERING}
+\newcommand{\schoolname}{SCHOOL OF ENGINEERING}
+\newcommand{\universityname}{KING MONGKUT'S INSTITUTE OF TECHNOLOGY LADKRABANG}
+\newcommand{\thesisyear}{20XX}
+\newcommand{\thesiscode}{KMITL-20XX-EN-X-XXX-XXX}
+
+% Load the environment settings
+\input{env}
+
+\newcommand{\makethesistitlepage}{
+    \begin{titlepage}
+        \centering
+        {\fontsize{18pt}{18pt}\bfseries \thesistitle \par}
+        \vfill
+        {\fontsize{18pt}{18pt}\bfseries \studentname \par}
+        \vfill
+        {\fontsize{18pt}{18pt}\bfseries
+        A THESIS SUBMITTED IN PARTIAL FULFILLMENT \\ OF THE REQUIREMENT FOR THE DEGREE OF \\ \degree \\ \schoolname \\ \universityname \\ \thesisyear \\ \thesiscode \par}
+    \end{titlepage}
+}
+
+% Begin the document
+\begin{document}
+
+% Title Page
+\makethesistitlepage
+
+% Copyright Page
+\newpage
+\thispagestyle{empty}
+\vspace*{\fill}
+    {\fontsize{18pt}{18pt}\bfseries
+    \noindent
+    COPYRIGHT \thesisyear \\
+    \schoolname \\
+    \universityname}
+
+% Roman numbering for front matter
+\pagenumbering{roman}
+\newpage
+
+\addtocontents{toc}{\protect\vspace{-.5\baselineskip}%
+    \protect\noindent\makebox[\textwidth][r]{\bfseries Page}\par\protect\vspace{.5\baselineskip}}
+\addcontentsline{toc}{chapter}{Abstract}
+\input{chapters/abstract}
+
+% Acknowledgement is contained in its own chapter file
+\input{chapters/acknowledgement}
+\cleardoublepage
+
+\tableofcontents
+\addcontentsline{toc}{chapter}{TABLE OF CONTENTS}
+% Front matter (lists) moved to a separate file for clarity
+\input{chapters/frontmatter}
+
+% Arabic numbering for main content
+\cleardoublepage
+\pagenumbering{arabic}
+
+\input{chapters/ch1_introduction}
+\input{chapters/ch2_related_theories}
+\input{chapters/ch3_design_construction}
+\input{chapters/ch4_results}
+\input{chapters/ch5_conclusion}
+
+% Bibliography
+\cleardoublepage
+\addcontentsline{toc}{chapter}{BIBLIOGRAPHY}
+\bibliographystyle{plain}
+\bibliography{references}
+
+% Appendix
+\appendix
+\input{chapters/appendix.tex}
+
+\end{document}
