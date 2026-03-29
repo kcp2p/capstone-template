@@ -14,6 +14,7 @@ RUN apk add --no-cache \
 	texlive-luatex \
 	texlive-mathscience \
 	texlive-pictures \
-	texlive-plaingeneric
+	texlive-plaingeneric \
+        texlive-xetex
 
 WORKDIR /work

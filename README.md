@@ -1,19 +1,22 @@
 # LaTeX Report Template
 
-This report template is built around a Docker-first `LuaLaTeX` workflow. The toolchain lives in a container, auxiliary files stay in `.cache/latexmk/`, and the final PDF is written to `build/thesis.pdf`.
+This thesis template uses a Docker-first `XeLaTeX` workflow with `latexmk`. The build is configured for English content, Thai content, and TH Sarabun fonts out of the box, so bilingual front matter such as `ABSTRACT IN THAI` can be typeset cleanly.
+
+The toolchain lives in a container, auxiliary files stay in `.cache/latexmk/`, and the final PDF is written to `build/thesis.pdf`.
 
 ## Why This Setup
 
 - No local TeX installation is required on macOS or Linux
 - The build environment is reproducible across machines
 - Generated files are separated from source files
-- `latexmk` handles bibliography runs and incremental rebuilds automatically
-- The image now uses Alpine Linux to keep the base layer smaller and simpler
+- `latexmk` handles repeated compilation and bibliography runs automatically
+- `XeLaTeX` is used for more reliable Thai text rendering and line breaking
+- `polyglossia` is already configured for English and Thai
 
 ## Project Layout
 
 ```text
-report/
+report-template/
 ├── .cache/           # LaTeX auxiliary files created during builds
 ├── build/            # Final PDF output
 ├── chapters/         # Front matter and chapter files
@@ -33,11 +36,11 @@ report/
 
 - Docker
 
-That is the only required dependency for building the report.
+That is the only required dependency for building the template.
 
 ## Quick Start
 
-From the `report/` directory:
+From the `report-template/` directory:
 
 ```bash
 ./build.sh build
@@ -53,7 +56,7 @@ After a successful build, the PDF is available at `build/thesis.pdf`. On macOS, 
 
 ## Common Commands
 
-Build the report once:
+Build the template once:
 
 ```bash
 ./build.sh build
@@ -85,14 +88,31 @@ Rebuild the Docker image only:
 
 If you prefer `make`, the same commands are available as `make build`, `make watch`, `make clean`, `make shell`, and `make image`.
 
+## Thai Support
+
+This template is preconfigured for Thai text:
+
+- `XeLaTeX` is the active engine
+- `polyglossia` is enabled in `env.tex`
+- English is the default language and Thai is registered as an additional language
+- TH Sarabun is used as both the main font and Thai font family
+- XeTeX Thai line breaking is enabled for better paragraph layout
+
+If you add Thai content, you can write it directly in the `.tex` files and wrap Thai sections with:
+
+```tex
+\begin{thai}
+...
+\end{thai}
+```
+
 ## Build System Notes
 
-- `Dockerfile` uses Alpine Linux plus the TeX Live packages required by this template
-- `.latexmkrc` keeps the output and cache policy in one place
+- `Dockerfile` installs TeX Live plus `texlive-xetex`
+- `.latexmkrc` runs `xelatex`
 - `build.sh` is the main entry point and uses Docker for all build tasks
 - `Makefile` is a convenience layer on top of `build.sh`
-- `.dockerignore` keeps the Docker build context small
-- Alpine reduces OS overhead, but TeX Live packages still make the image fairly large overall
+- `env.tex` contains the font, language, spacing, and layout configuration
 
 ## What To Edit
 
@@ -113,4 +133,4 @@ If you prefer `make`, the same commands are available as `make build`, `make wat
 
 - Do not commit `.cache/` or `build/`
 - The generated PDF should always be read from `build/thesis.pdf`
-- The source tree should stay focused on editable report content
+- The source tree should stay focused on editable thesis content
