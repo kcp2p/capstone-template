@@ -1,19 +1,26 @@
+\newcommand{\abstractmetadata}{
 \noindent
-\begin{tabular}{ll}
-\textbf{Thesis} & \thesistitle \\
-\textbf{Student} & \studentname \\
-\textbf{Student ID} & XXXXXXXX \\
-\textbf{Degree} & Bachelor of Engineering \\
-\textbf{Program} & Robotics and AI Engineering \\
-\textbf{Year} & \thesisyear \\
-\textbf{Thesis Advisor} & Prof. Dr. Thesis Advisor \\
-\textbf{Co-Thesis Advisor} & Assoc. Prof. Dr. Co-Thesis Advisor \\
-\end{tabular}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}l X@{}}
+Thesis & \thesistitle \\
+Student & \studentname \\
+Student ID & XXXXXXXX \\
+Degree & Bachelor of Engineering \\
+Program & Robotics and AI Engineering \\
+Year & \thesisyear \\
+Thesis Advisor & Prof. Dr. Thesis Advisor \\
+Co-Thesis Advisor & Assoc. Prof. Dr. Co-Thesis Advisor \\
+\end{tabularx}
+}
 
+\newcommand{\abstractheading}[1]{
 \vspace{1cm}
-
 \begin{center}
-\textbf{\Large ABSTRACT IN ENGLISH}
+{\fontsize{18pt}{22pt}\selectfont\bfseries #1}
 \end{center}
+}
+
+\addcontentsline{toc}{chapter}{ABSTRACT IN ENGLISH}
+\abstractmetadata
+\abstractheading{ABSTRACT IN ENGLISH}
 
 Replace this section with a concise abstract of roughly 200--250 words covering the problem, approach, key results, and main contribution of your thesis.
